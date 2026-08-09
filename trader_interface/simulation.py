@@ -1,5 +1,6 @@
 # Library Imports
 import os
+import sys
 import pandas as pd
 from algorithm import Algorithm
 import numpy as np
@@ -394,5 +395,8 @@ if __name__ == "__main__":
     engine = TradingEngine()
     algorithmInstance = Algorithm(engine.positions)
     engine.run_algorithms(algorithmInstance)
-    engine.plot_returns()
+    # Charts off by default -- plot_returns() writes ./simulation_results and
+    # opens a blocking window. Run with --plot to get them back.
+    if "--plot" in sys.argv:
+        engine.plot_returns()
 
